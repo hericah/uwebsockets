@@ -31,7 +31,7 @@ def connect(uri):
                                 uri.hostname, uri.port)
 
     sock = socket.socket()
-    addr = socket.getaddrinfo(uri.hostname, uri.port)
+    addr = socket.getaddrinfo(uri.hostname, uri.port, socket.AF_INET, socket.SOCK_STREAM)
     sock.connect(addr[0][4])
     if uri.protocol == 'wss':
         sock = ussl.wrap_socket(sock, server_hostname=uri.hostname)
